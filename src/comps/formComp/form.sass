@@ -1,8 +1,17 @@
+body
+    @media screen and (max-width: 1120px)
+        overflow-x: hidden
 form
     padding: 0 250px
     display: flex
     flex-direction: column
     max-width: 1000px
+    @media screen and (max-width: 1520px)
+        padding: 0 5vw
+    @media screen and (max-width: 1120px)
+        padding: 40px 60px
+    @media screen and ( max-width: 525px )
+        max-width: 90.538vw
     span
         color: #d03737
         font-size: 14px
@@ -20,9 +29,17 @@ form
         border-radius: 5px
         border: 1px solid hsl(270, 3%, 87%)
         font-size: 18px
+        display: block
+    input:focus
+        outline: none
+        border: 2px solid hsl(249, 99%, 64%)
+    .rl
+        border: 1px solid #FF0000
     .lowerForm
         display: flex
         column-gap: 20px
+        @media screen and ( max-width: 520px )
+            flex-direction: column
         label
             display: block
         .formDate
@@ -46,3 +63,34 @@ form
     input::placeholder
         color: hsl(270, 3%, 87%)
         font-size: 15px
+
+.endWrapper
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+
+    width: 400px
+    margin: 0 auto
+
+    svg
+        margin: 20px 0
+    h1
+        font-size: 30px
+        letter-spacing: 5px
+        text-transform: uppercase
+        color: hsl(278, 68%, 11%)
+    span
+        margin: 20px 0
+        color: hsl(279, 6%, 55%)
+    button
+        margin-top: 10px
+        width: 100%
+        padding: 15px 0
+        text-transform: capitalize
+        color: #f5f5f5
+        background-color: hsl(278, 68%, 11%)
+        border: none
+        border-radius: 5px
+        margin-top: 30px
+        cursor: pointer

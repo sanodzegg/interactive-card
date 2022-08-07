@@ -1,8 +1,29 @@
+@media screen and (max-width: 1120px) {
+  body {
+    overflow-x: hidden;
+  }
+}
+
 form {
   padding: 0 250px;
   display: flex;
   flex-direction: column;
   max-width: 1000px;
+}
+@media screen and (max-width: 1520px) {
+  form {
+    padding: 0 5vw;
+  }
+}
+@media screen and (max-width: 1120px) {
+  form {
+    padding: 40px 60px;
+  }
+}
+@media screen and (max-width: 525px) {
+  form {
+    max-width: 90.538vw;
+  }
 }
 form span {
   color: #d03737;
@@ -23,11 +44,24 @@ form input {
   border-radius: 5px;
   border: 1px solid hsl(270deg, 3%, 87%);
   font-size: 18px;
+  display: block;
+}
+form input:focus {
+  outline: none;
+  border: 2px solid hsl(249deg, 99%, 64%);
+}
+form .rl {
+  border: 1px solid #FF0000;
 }
 form .lowerForm {
   display: flex;
   -moz-column-gap: 20px;
        column-gap: 20px;
+}
+@media screen and (max-width: 520px) {
+  form .lowerForm {
+    flex-direction: column;
+  }
 }
 form .lowerForm label {
   display: block;
@@ -64,4 +98,38 @@ form input:-ms-input-placeholder {
 form input::placeholder {
   color: hsl(270deg, 3%, 87%);
   font-size: 15px;
+}
+
+.endWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 400px;
+  margin: 0 auto;
+}
+.endWrapper svg {
+  margin: 20px 0;
+}
+.endWrapper h1 {
+  font-size: 30px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: hsl(278deg, 68%, 11%);
+}
+.endWrapper span {
+  margin: 20px 0;
+  color: hsl(279deg, 6%, 55%);
+}
+.endWrapper button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 15px 0;
+  text-transform: capitalize;
+  color: #f5f5f5;
+  background-color: hsl(278deg, 68%, 11%);
+  border: none;
+  border-radius: 5px;
+  margin-top: 30px;
+  cursor: pointer;
 }/*# sourceMappingURL=form.css.map */

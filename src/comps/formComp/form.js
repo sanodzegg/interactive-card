@@ -1,13 +1,17 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./form.css";
 
-function Form() {
+import { ReactComponent as CompleteSVG } from "../../assets/images/icon-complete.svg";
+
+function Form({ setGCN, setGN, setGM, setGY, setGCVC }) {
 
   const [name, setName] = useState("");
   const [cardNum, setCardNum] = useState("");
   const [month, setMonth] = useState(0);
   const [year, setYear] = useState(0);
   const [cvc, setCVC] = useState(0);
+
+  const [formSent, setFormSent] = useState(false);
 
   const [showErrors, setShowErrors] = useState(false);
 
@@ -41,6 +45,8 @@ function Form() {
   const cvcRef = useRef(null);
 
   const handleName = (e) => {
+    setGN(e);
+
     if (e.length > 2) {
       setName(e);
       setErrors((p) => ({
@@ -69,6 +75,7 @@ function Form() {
     const parsedValue = e.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
 
     numRef.current.value = parsedValue;
+    setGCN(parsedValue);
 
     if (e.length === 19) {
       setCardNum(e);
@@ -101,6 +108,7 @@ function Form() {
   const handleMonth = (e) => {
     const textArr = e.split("");
     const textinfield = textArr.filter(e => e.match(/[a-zA-Z]/g));
+    setGM(e);
 
     if (e.length === 2) {
       setMonth(e);
@@ -133,6 +141,7 @@ function Form() {
   const handleYear = (e) => {
     const textArr = e.split("");
     const textinfield = textArr.filter(e => e.match(/[a-zA-Z]/g));
+    setGY(e);
 
     if (e.length === 2) {
       setYear(e);
@@ -165,6 +174,7 @@ function Form() {
   const handleCVC = (e) => {
     const textArr = e.split("");
     const textinfield = textArr.filter(e => e.match(/[a-zA-Z]/g));
+    setGCVC(e);
 
     if (e.length === 3) {
       setCVC(e);
@@ -193,6 +203,14 @@ function Form() {
     }
   }
 
+  const nullifyCard = () => {
+    setGCN("");
+    setGN("");
+    setGM("");
+    setGY("");
+    setGCVC("");
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -219,20 +237,36 @@ function Form() {
       yearRef.current.value = "";
       cvcRef.current.value = "";
 
-    } 
+      setFormSent(true);
+    }
   }
 
+  const handleContinue = () => {
+    nullifyCard();
+    setFormSent(false);
+  }
+
+  if (formSent) {
+    return (
+      <div className="endWrapper">
+        <CompleteSVG />
+        <h1>thank you</h1>
+        <span>We've added your card details.</span>
+        <button onClick={handleContinue}>Continue</button>
+      </div>
+    )
+  }
 
   return (
     <form action="#">
         <>
           <label htmlFor="name">cardholder name</label>
-          <input ref={nameRef} type="text" name="name" onChange={(e) => handleName(e.target.value)} placeholder="e.g. Jane Appleseed" />
+          <input className={showErrors && !errors.name.valid ? "rl" : null} ref={nameRef} type="text" name="name" onChange={(e) => handleName(e.target.value)} placeholder="e.g. Jane Appleseed" />
           <span>{showErrors && !errors.name.valid ? errors.name.message : null}</span>
         </>
         <>
           <label htmlFor="cardNum">card number</label>
-          <input type="text" name="cardNum" onChange={(e) => handleCardNum(e.target.value)} placeholder="e.g. 1234 5678 9123 0000" ref={numRef} />
+          <input className={showErrors && !errors.cardNum.valid ? "rl" : null} type="text" name="cardNum" maxLength={19} onChange={(e) => handleCardNum(e.target.value)} placeholder="e.g. 1234 5678 9123 0000" ref={numRef} />
           <span>{showErrors && !errors.cardNum.valid ? errors.cardNum.message : null}</span>
         </>
         <div className="lowerForm">
@@ -246,7 +280,7 @@ function Form() {
             </div>
             <div>
               <label htmlFor="CVC">CVC</label>
-              <input className={showErrors && !errors.cvc.valid ? "rl" : null} type="text" maxLength={3} onChange={(e) => handleCVC(e.target.value)} ref={cvcRef} name="CVC" placeholder="e.g. 123" />
+              <input className={showErrors && !errors.cvc.valid ? "cvcval rl" : "cvcval"} type="text" maxLength={3} onChange={(e) => handleCVC(e.target.value)} ref={cvcRef} name="CVC" placeholder="e.g. 123" />
               <span>{showErrors && errors.cvc.message}</span>
             </div>
         </div>

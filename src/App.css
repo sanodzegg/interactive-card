@@ -3,3 +3,11 @@
     justify-content: space-between;
     align-items: center;
 }
+
+@media screen and (max-width: 1120px) {
+    .mainSectionWrapper {
+        flex-direction: column;
+        height: 100vh;
+        justify-content: flex-start;
+    }
+}
