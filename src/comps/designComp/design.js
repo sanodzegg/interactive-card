@@ -9,7 +9,7 @@ function Design({ globalCardNum, globalName, globalMonth, globalYear, globalCVC 
   return (
     <>
         <div className="designImg">
-            <img src={bgimage} />
+            <img src={bgimage} alt="background" />
         </div>
         <div className="staticCards">
             <div className="cardFrontWrapper">

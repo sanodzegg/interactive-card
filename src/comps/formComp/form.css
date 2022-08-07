@@ -108,6 +108,11 @@ form input::placeholder {
   width: 400px;
   margin: 0 auto;
 }
+@media screen and (max-width: 1120px) {
+  .endWrapper {
+    margin: 85px auto;
+  }
+}
 .endWrapper svg {
   margin: 20px 0;
 }

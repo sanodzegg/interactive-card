@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import "./form.css";
 
 import { ReactComponent as CompleteSVG } from "../../assets/images/icon-complete.svg";
